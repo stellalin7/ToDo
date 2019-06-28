@@ -34,6 +34,12 @@ public class TaskController {
         return "index";
     }
     
+    @GetMapping("/tasks/view/{id}")
+	public String viewTask (@PathVariable Long id, Model model) {
+		model.addAttribute("task", taskService.findById(id));
+        return "view";	
+    }
+    
     @GetMapping("/tasks/{id}")
 	public String getEditPage (@PathVariable Long id, Model model) {
 		model.addAttribute("task", taskService.findById(id));

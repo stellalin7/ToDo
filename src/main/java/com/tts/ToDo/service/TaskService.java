@@ -21,17 +21,17 @@ public class TaskService {
         return tasks;
     }
 	
-    public List<Task> findAllByUser(String creator) {
-        List<Task> tasks = taskRepository.findAllByCreatorOrderByCreatedAtDesc(creator);
-        return tasks;
-    }
-	
-    
-    
-    public List<Task> findAllByStatusOrderByCreatedAtDesc(String status){
-    	List<Task> tasks = taskRepository.findAllByStatusOrderByCreatedAtDesc(status);
-    	return tasks;
-   }	
+//    public List<Task> findAllByUser(String creator) {
+//        List<Task> tasks = taskRepository.findAllByCreatorOrderByCreatedAtDesc(creator);
+//        return tasks;
+//    }
+//	
+//    
+//    
+//    public List<Task> findAllByStatusOrderByCreatedAtDesc(String status){
+//    	List<Task> tasks = taskRepository.findAllByStatusOrderByCreatedAtDesc(status);
+//    	return tasks;
+//   }	
 	
     public void save(Task task) {
         taskRepository.save(task);
