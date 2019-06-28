@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>ToDo</title>
+    <link th:replace="fragments/bootstrap"></link>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+			<div class = "jumbotron">
+				<h1>To Do</h1>
+			</div>
+			<div class="row">
+				<div th:each="task:${taskList}">
+				<div class="col-md-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading text-nowrap">
+							<h4 th:text="${task.status}"></h4>
+							<h2 th:text="${task.title}"></h2>
+							<h5 th:text="${task.creator}"></h5>
+						</div>
+						<div class="panel-body text-truncate">
+							<p th:text="${task.description}"/>
+						</div>
+						<div class="panel-footer">
+							<div class="btn-group btn-group-justified">
+								<div class="btn-group">
+									<a th:href="@{'/tasks/{id}'(id=${task.getId()})}"><button class="btn btn-warning">Edit</button></a>
+								</div>
+								<div class="btn-group">
+									<form action="#" th:action="@{'/tasks/{id}'(id=${task.getId()})}" th:method="delete">
+							        	<div class="form-group">
+								            <input type="hidden" name="_method" value="delete"/>
+									        <button type="submit" class="btn btn-danger" th:text="Delete">Delete</button>
+								    	</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="../../webjars/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Blog Project</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="../../css/standard.css" rel="stylesheet">
+</head>
+<body>
+	<div th:fragment="taskForm">			
+		<div class="form-group">
+ 			<label for="title">Title</label>
+ 			<input type="text" class="form-control" placeholder="Task Title" th:field="*{title}" />
+ 		</div>
+ 		<div class="form-group">
+ 			<label for="description">Description</label>
+ 			<input type="text" class="form-control" placeholder="Task Description" th:field="*{description}" />
+ 		</div>
+ 		
+ 		<div class="form-group">
+ 			<label for="creator">Creator</label>
+ 			<input type="text" class="form-control" placeholder="Task Creator" th:field="*{creator}" />
+ 		</div>
+ 		
+ 		<div class="form-group">
+ 			<label for="status">Status</label>
+ 			<input list="statuses" name="status" class ="form-control" placeholder="Status" th:field="*{status}"/>
+ 			<datalist id="statuses">
+ 				<option value="New">New</option>
+ 				<option value="In Progress">In Progress</option>
+ 				<option value="Complete">Complete</option>
+ 			</datalist>
+ 		</div>
+	</div>
+	<script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="../../webjars/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>
