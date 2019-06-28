@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.tts.ToDo.model.Task;
 //import com.tts.ToDo.model.User;
@@ -28,16 +28,29 @@ public class TaskController {
     private TaskService taskService;
     
     @GetMapping(value= {"/tasks", "/"})
-    public String getFeed(Model model){
+    public String getIndex(Model model){
         List<Task> tasks = taskService.findAll();
         model.addAttribute("taskList", tasks);
         return "index";
     }
     
     @GetMapping("/tasks/{id}")
-	public String editBlog (@PathVariable Long id, Model model) {
+	public String getEditPage (@PathVariable Long id, Model model) {
 		model.addAttribute("task", taskService.findById(id));
-        return "blogpost/edit";	
+        return "edit";	
+    }
+    
+    @PutMapping("/tasks/{id}")
+    public String submitUpdate(@PathVariable Long id, Task task, Model model) {
+    	Task original = taskService.findById(id);
+    	original.setTitle(task.getTitle());
+    	original.setCreator(task.getCreator());
+    	original.setDescription(task.getDescription());
+    	original.setDescription(task.getStatus());
+    	taskService.save(original);
+    	model.addAttribute("task", taskService.findById(id));
+    	model.addAttribute("successMessage", "Task successfully updated");
+    	return "edit";
     }
     
     @DeleteMapping("/tasks/{id}")
@@ -59,14 +72,11 @@ public class TaskController {
     }
 
     @PostMapping(value = "/tasks")
-    public String submitTweetForm(@Valid Task task, BindingResult bindingResult, Model model) {
-        //User user = userService.getLoggedInUser();
-        if (!bindingResult.hasErrors()) {
-            //task.setUser(user);
-            taskService.save(task);
-            model.addAttribute("successMessage", "Task successfully created!");
-            model.addAttribute("task", new Task());
-        }
+    public String createTask(@Valid Task task,  Model model) {
+        //task.setUser(user);
+        taskService.save(task);
+        model.addAttribute("successMessage", "Task successfully created!");
+        model.addAttribute("task", new Task());
         return "newTask";
     }
     

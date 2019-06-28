@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>"Update Task"</title>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="put" th:object="${task}">
+			<div th:replace="fragments/taskForm"></div>
+			<button type="submit">Edit Task</button>	
+		</form>
+		<div th:if="${successMessage}">
+			<h1 th:text="${successMessage}"></h1>
+		</div>
+	</div>
+</body>
+</html>

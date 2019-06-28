@@ -66,9 +66,9 @@ public class Task {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public String getTitle() {
 		return title;
@@ -91,9 +91,9 @@ public class Task {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+//	public void setCreatedAt(Date createdAt) {
+//		this.createdAt = createdAt;
+//	}
 
 //	public Status getStatus() {
 //		return status;
