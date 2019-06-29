@@ -11,28 +11,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Status {
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "status_id")
-    private Long id;
-    private String status;
-    
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-}
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Entity
+//public class Status {
+//	@Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "status_id")
+//    private Long id;
+//    private String status;
+//    
+//	public Long getId() {
+//		return id;
+//	}
+//	
+//	public String getStatus() {
+//		return status;
+//	}
+//	public void setStatus(String status) {
+//		this.status = status;
+//	}
+//}

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>View Task</title>
+	<link th:replace="fragments/bootstrap"></link>
 </head>
 <body>
 	<div class="container">
@@ -10,6 +11,10 @@
 		<h2 th:text="${task.creator}"></h2>
 		<a th:text="${task.description}"></a>
 		<h2 th:text="${task.status}"></h2>
+		<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Edit Task</button></a>
+		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="delete">
+			<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Delete Task</button></a>
+		</form>
 	</div>
 </body>
 </html>

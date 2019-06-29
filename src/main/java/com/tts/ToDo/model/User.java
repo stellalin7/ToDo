@@ -39,8 +39,8 @@ public class User {
 	private String lastName;
 	private int active;
 
-	@CreationTimestamp 
-	private Date createdAt;
+//	@CreationTimestamp 
+//	private Date createdAt;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), 
@@ -103,13 +103,11 @@ public class User {
 		this.active = active;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+//	public Date getCreatedAt() {
+//		return createdAt;
+//	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+	
 
 	public Set<Role> getRoles() {
 		return roles;

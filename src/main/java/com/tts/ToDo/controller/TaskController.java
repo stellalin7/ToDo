@@ -52,7 +52,7 @@ public class TaskController {
     	original.setTitle(task.getTitle());
     	original.setCreator(task.getCreator());
     	original.setDescription(task.getDescription());
-    	original.setDescription(task.getStatus());
+    	original.setStatus(task.getStatus());
     	taskService.save(original);
     	model.addAttribute("task", taskService.findById(id));
     	model.addAttribute("successMessage", "Task successfully updated");
