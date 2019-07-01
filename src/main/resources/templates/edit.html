@@ -7,12 +7,18 @@
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
+		<!-- {id} is dynamically generated from (id=${task.id}) in the "@{'literal path'}" in the form action for method="get" 
+		to submit the ${task} object added to the model from the TaskController method for @GetMapping("/tasks/{id}") 
+		being sent back as a parameter for the TaskController method for @PutMapping("/tasks/{id}") --> 
 		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="put" th:object="${task}">
 			<div th:replace="fragments/taskForm"></div>
 			<button type="submit">Edit Task</button>	
 		</form>
+		<!-- display the value of the "${successMessage}" added to the model 
+		after the Task with this {id} has been saved with all the field forms in "fragments/taskForm" bound to the "${task} object  
+		sent to the TaskController method for @PutMapping("/tasks/{id}")-->
 		<div th:if="${successMessage}">
-			<h1 th:text="${successMessage}"></h1>
+			<h1 th:utext="${successMessage}"></h1>
 		</div>
 	</div>
 </body>

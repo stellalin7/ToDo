@@ -7,7 +7,11 @@
 	    <link href="../../css/standard.css" rel="stylesheet">
 </head>
 <body>
-	<div th:fragment="taskForm">			
+	<div th:fragment="taskForm">
+		<!-- this fragment is used in both the newTask and edit pages, so the placeholder = "text" is displayed
+		for each th:field="*{property}" of the th:object="${task}" in the form to be posted from newTask.html
+		and also displays the value of the existing *{property}	of the $task object added to the model from the TaskController method 
+		returning the "edit" page -->
 		<div class="form-group">
  			<label for="title">Title</label>
  			<input type="text" class="form-control" placeholder="Task Title" th:field="*{title}" />
@@ -24,6 +28,7 @@
  		
  		<div class="form-group">
  			<label for="status">Status</label>
+ 			<!-- choices of valid statuses listed in dropdown -->
  			<input list="statuses" name="status" class ="form-control" placeholder="Status" th:field="*{status}"/>
  			<datalist id="statuses">
  				<option value="New">New</option>

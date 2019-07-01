@@ -7,11 +7,16 @@
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
+		<!-- getting each .property from the ${task} attribute added to the model
+		in the method with @GetMapping("/tasks/view/{id}") in the TaskController
+		as defined in the Task entity -->
 		<h1 th:text="${task.title}"></h1>
 		<h2 th:text="${task.creator}"></h2>
 		<a th:text="${task.description}"></a>
 		<h2 th:text="${task.status}"></h2>
+		<!-- {id} is dynamically generated as for the text above using (id=${task.id})in the literal "@{'path'}" -->
 		<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Edit Task</button></a>
+		<!-- method="delete" needs to be in a form tag, unlike the default method="get" in the button above-->
 		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="delete">
 			<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Delete Task</button></a>
 		</form>

@@ -9,12 +9,18 @@
     	<div th:replace="fragments/navbar"></div>
         <div class="jumbotron col-md-8 col-md-offset-2">
             <h2>New Task</h2><br/>
+            <!-- a new Task() object is saved to the model with the attribute name ${task} in the TaskController method 
+            for @GetMapping(value = "/tasks/new") and th:object="${task}" is then sent as a parameter 
+            to the TaskController method for @PostMapping(value = "/tasks")
+            with the values entered by the user for each th:field="*{title}" in the "fragments/taskForm :: taskForm" -->
             <form th:action="@{/tasks}" th:object="${task}" method="post" autocomplete="off" >
                 <div th:replace="fragments/taskForm :: taskForm" ></div>
 			    <div class="form-group">
 			        <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit">Save Task</button>
 			    </div>
 			</form>
+			<!-- display the value of ${successMessage} attribute added to the model in the TaskController method for @PostMapping(value = "/tasks")
+			after ${task} object passed as a parameter into this method is saved to the TaskRepository by taskService.save(task); -->
 			<div th:if="${successMessage}">
 	            <h3><span class="text-success" th:utext="${successMessage}"></span></h3>
 	        </div> 

@@ -11,10 +11,15 @@
 				<h1>To Do</h1>
 			</div>
 			<div class="row">
+				<!-- "task" is the iterator through the "${taskList} attribute added to the model
+				in the TaskController method with @GetMapping(value= {"/tasks", "/"})
+				containing the List<Task> returned from taskService.findAll() -->
 				<div th:each="task:${taskList}">
 				<div class="col-md-4">
 					<div class="panel panel-primary">
 						<div class="panel-heading text-nowrap">
+							<!-- assigning the text for each .property 
+							of each individual ${task} object as defined in the Task entity-->
 							<h4 th:text="${task.status}"></h4>
 							<h2 th:text="${task.title}"></h2>
 							<h5 th:text="${task.creator}"></h5>
@@ -25,11 +30,15 @@
 						<div class="panel-footer">
 							<div class="btn-group btn-group-justified">
 								<div class="btn-group">
+									<!-- {id} is dynamically generated from the getter method in the Task entity (id=${task.getId()})
+									in the  "@{'literal paths'}" -->
 									<a th:href="@{'/tasks/view/{id}'(id=${task.getId()})}"><button class="btn btn-success">View</button></a>
 									<a th:href="@{'/tasks/{id}'(id=${task.getId()})}"><button class="btn btn-warning">Edit</button></a>
 								</div>
 								<div class="btn-group">
-									<form action="#" th:action="@{'/tasks/{id}'(id=${task.getId()})}" th:method="delete">
+									<!-- method="delete" needs to be in the form tag
+									(default was method="get" for buttons above) -->
+									<form th:action="@{'/tasks/{id}'(id=${task.getId()})}" th:method="delete">
 							        	<div class="form-group">
 								            <input type="hidden" name="_method" value="delete"/>
 									        <button type="submit" class="btn btn-danger" th:text="Delete">Delete</button>
