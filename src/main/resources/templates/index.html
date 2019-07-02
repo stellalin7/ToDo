@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
 <head>
-	<title>ToDo</title>
-    <link th:replace="fragments/bootstrap"></link>
+	<title>ToDo Site</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/standard.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
-			<div class = "jumbotron">
-				<h1>To Do</h1>
-			</div>
-			<div class="row">
-				<!-- "task" is the iterator through the "${taskList} attribute added to the model
-				in the TaskController method with @GetMapping(value= {"/tasks", "/"})
-				containing the List<Task> returned from taskService.findAll() -->
-				<div th:each="task:${taskList}">
+		<h1>Welcome to Our To-Do List Site!</h1>
+		<div class="row">
+			<div th:each="do:${taskList}">
 				<div class="col-md-4">
-					<div class="panel panel-primary">
+					<div class="panel panel-default" width="200px">
+						<!-- <div class="panel-heading"> -->
 						<div class="panel-heading text-nowrap">
-							<!-- assigning the text for each .property 
-							of each individual ${task} object as defined in the Task entity-->
-							<h4 th:text="${task.status}"></h4>
-							<h2 th:text="${task.title}"></h2>
-							<h5 th:text="${task.creator}"></h5>
+							<h3 th:text="${do.title}"></h3>
+							<strong><h4 th:text="${do.creator}" /></h4></strong>
+							<p th:text="${do.status}" /></p>
 						</div>
-						<div class="panel-body text-truncate">
-							<p th:text="${task.description}"/>
+						<div class="panel-body text-truncate" width="200px">
+						<!-- <div class="panel-body"> -->
+							<p th:text="${do.description}"></p>
+							
 						</div>
 						<div class="panel-footer">
+							
+							<!-- <div class="row"> -->
 							<div class="btn-group btn-group-justified">
-								<div class="btn-group">
-									<!-- {id} is dynamically generated from the getter method in the Task entity (id=${task.getId()})
-									in the  "@{'literal paths'}" -->
-									<a th:href="@{'/tasks/view/{id}'(id=${task.getId()})}"><button class="btn btn-success">View</button></a>
-									<a th:href="@{'/tasks/{id}'(id=${task.getId()})}"><button class="btn btn-warning">Edit</button></a>
-								</div>
-								<div class="btn-group">
-									<!-- method="delete" needs to be in the form tag
-									(default was method="get" for buttons above) -->
-									<form th:action="@{'/tasks/{id}'(id=${task.getId()})}" th:method="delete">
-							        	<div class="form-group">
-								            <input type="hidden" name="_method" value="delete"/>
-									        <button type="submit" class="btn btn-danger" th:text="Delete">Delete</button>
-								    	</div>
-									</form>
-								</div>
+								
+								<!-- Link to Show  -->
+								<!-- <form action="#" th:action="@{'/tasks/view/{id}'(id=${do.id})}"
+									th:method="get" class="form-vertical">
+									<div class="form-group">
+										<input type="hidden" name="_method" value="get" /> -->
+										<div class="btn-group">
+											<a th:href="@{'/tasks/view/{id}'(id=${do.id})}"><button type="submit" class="btn-primary"
+											th:text="Show">Show To-Do Task</button></a>
+										</div>
+									<!-- </div>
+								</form> -->
+
+								<!-- Link to Update -->
+								<!-- <form action="#" th:action="@{'/tasks/update/{id}'(id=${do.id})}"
+									th:method="get" class="form-vertical">
+									<div class="form-group">
+										<input type="hidden" name="_method" value="get" /> -->
+										<div class="btn-group">
+											<a th:href="@{'/tasks/update/{id}'(id=${do.id})}"><button type="submit" class="btn-success"
+											th:text="Update">Update To-Do Task</button></a>
+										</div>
+									<!-- </div>
+								</form> -->
+
+								
+								<!--  Link to Destroy -->
+								<!-- <form action="#" th:action="@{'/tasks/delete/{id}'(id=${do.id})}"
+									th:method="get" class="form-vertical">
+									<div class="form-group">
+										<input type="hidden" name="_method" value="get" /> -->
+										<div class="btn-group">
+											<a th:href="@{'/tasks/delete/{id}'(id=${do.id})}"><button type="submit" class="btn-danger"
+											th:text="Delete">Delete To-Do Task</button></a>
+										</div>
+									<!-- </div>
+								</form> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
-	<script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="../../webjars/jquery/1.9.1/jquery.min.js"></script>
+	<!-- <div th:replace="/fragments/styling :: body-links"></div> -->
 </body>
 </html>

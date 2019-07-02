@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
+<head>
+	<title>ToDo Site</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- <link href="../../webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+		rel="stylesheet"> -->
+	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/standard.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+		<div th:if="${successMessage}">
+			<h1 th:utext="${successMessage}"></h1>
+		</div>
+		<!-- <h1>Your Task</h1> -->
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 th:text="${task.title}"></h3>
+						<strong><p th:text="${task.creator}" /></p></strong>
+					</div>
+					<div class="panel-body">
+						<h5 th:text="${task.description}"></h5>
+					</div>
+					<div class="panel-footer">
+						<h4 th:text="${task.status}" /></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="/fragments/styling :: body-links"></div>
+</body>
+</html>

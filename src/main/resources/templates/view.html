@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
 <head>
-	<title>View Task</title>
-	<link th:replace="fragments/bootstrap"></link>
+<title>ToDo Site</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- <link href="../../webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"> -->
+	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/standard.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
-		<!-- getting each .property from the ${task} attribute added to the model
-		in the method with @GetMapping("/tasks/view/{id}") in the TaskController
-		as defined in the Task entity -->
-		<h1 th:text="${task.title}"></h1>
-		<h2 th:text="${task.creator}"></h2>
-		<a th:text="${task.description}"></a>
-		<h2 th:text="${task.status}"></h2>
-		<!-- {id} is dynamically generated as for the text above using (id=${task.id})in the literal "@{'path'}" -->
-		<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Edit Task</button></a>
-		<!-- method="delete" needs to be in a form tag, unlike the default method="get" in the button above-->
-		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="delete">
-			<a th:href="@{'/tasks/{id}'(id=${task.id})}"><button>Delete Task</button></a>
-		</form>
+		<h1>Your To-Do Task</h1>
+		<div class="row">
+			<!-- <div th:each="do:${posts}"> -->
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 th:text="${task.title}"></h3>
+							<strong><p th:text="${task.creator}" /></p></strong>
+							
+						</div>
+						<div class="panel-body">
+							
+							<h5 th:text="${task.description}"></h5>
+						</div>
+						<div class="panel-footer">
+							<p th:text="${task.status}" /></p>
+							<!-- <div class="row"> -->
+							<div class="btn-group btn-group-justified">
+								<div class="btn-group">
+									<!-- {id} is dynamically generated as for the text above using (id=${task.id})in the literal "@{'path'}" -->
+									<a th:href="@{'/tasks/update/{id}'(id=${task.id})}"><button class="btn-success">Edit Task</button></a>
+								</div>
+								<div class="btn-group">
+									<a th:href="@{'/tasks/delete/{id}'(id=${task.id})}"><button class="btn-danger">Delete Task</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
 	</div>
+	<div th:replace="/fragments/styling :: body-links"></div>
 </body>
 </html>

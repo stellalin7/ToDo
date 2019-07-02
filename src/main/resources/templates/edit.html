@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-	<title>"Update Task"</title>
-	<link th:replace="fragments/bootstrap"></link>
+	<title>Update To-Do Task</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- <link href="../../webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"> -->
+	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/standard.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
-		<!-- {id} is dynamically generated from (id=${task.id}) in the "@{'literal path'}" in the form action for method="get" 
-		to submit the ${task} object added to the model from the TaskController method for @GetMapping("/tasks/{id}") 
-		being sent back as a parameter for the TaskController method for @PutMapping("/tasks/{id}") --> 
-		<form th:action="@{'/tasks/{id}'(id=${task.id})}" th:method="put" th:object="${task}">
-			<div th:replace="fragments/taskForm"></div>
-			<button type="submit">Edit Task</button>	
+		<h3>Please use the form below to update a To-Do Task:</h3>
+		<form action="#" th:action="@{'/tasks/update/{id}'(id=${task.id})}"
+			th:object="${task}" th:method="put">
+			<!-- <div class="form-group">
+				<input type="text" class="form-control" placeholder="Title..."
+					th:field="*{title}" />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Description..."
+					th:field="*{description}" />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control"
+					placeholder="Your Name Here..." th:field="*{creator}" />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control"
+					placeholder="Status: On-Hold, On-Going, Not Started, Finished, or Canceled..."
+					th:field="*{status}" />
+			</div> -->
+			<div th:replace="fragments/taskForm :: taskForm" ></div>
+			<button class="btn btn-success">Submit Your Updated To-Do Task</button>
 		</form>
-		<!-- display the value of the "${successMessage}" added to the model 
-		after the Task with this {id} has been saved with all the field forms in "fragments/taskForm" bound to the "${task} object  
-		sent to the TaskController method for @PutMapping("/tasks/{id}")-->
-		<div th:if="${successMessage}">
-			<h1 th:utext="${successMessage}"></h1>
-		</div>
 	</div>
+	<!-- <div th:if="${successMessage}">
+		<h1 th:utext="${successMessage}"></h1>
+	</div> -->
+	<div th:replace="/fragments/styling :: body-links"></div>
 </body>
 </html>

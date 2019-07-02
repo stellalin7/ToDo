@@ -119,6 +119,11 @@ public class TaskControllerTest  {
 	}
 
 	@Test
+	public void testGetDeletePage() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
 	public void testDeletePostWithId() {
 		fail("Not yet implemented");
 	}

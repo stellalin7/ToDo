@@ -45,13 +45,13 @@ public class TaskController {
         return "view";	
     }
     
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/tasks/update/{id}")
 	public String getEditPage (@PathVariable Long id, Model model) {
 		model.addAttribute("task", taskService.findById(id));
         return "edit";	
     }
     
-    @PutMapping("/tasks/{id}")
+    @PutMapping("/tasks/update/{id}")
     public String submitUpdate(@PathVariable Long id, Task task, Model model) {
     	Task original = taskService.findById(id);
     	original.setTitle(task.getTitle());
@@ -61,10 +61,16 @@ public class TaskController {
     	taskService.save(original);
     	model.addAttribute("task", taskService.findById(id));
     	model.addAttribute("successMessage", "Task successfully updated");
-    	return "edit";
+    	return "result";
     }
     
-    @DeleteMapping("/tasks/{id}")
+    @GetMapping(value="/tasks/delete/{id}")
+	public String getDeletePage(@PathVariable Long id, Model model) {
+    	model.addAttribute("task", taskService.findById(id));
+		return "delete";
+	}
+    
+    @DeleteMapping("/tasks/delete/{id}")
     //@RequestMapping(value = "/blog_posts/{id}", method = RequestMethod.DELETE)
     public String deletePostWithId(@PathVariable Long id, Task task, Model model) {
         taskService.deleteById(id);
@@ -82,13 +88,13 @@ public class TaskController {
         return "newTask";
     }
 
-    @PostMapping(value = "/tasks")
+    @PostMapping(value = "/tasks/new")
     public String createTask(@Valid Task task,  Model model) {
         //task.setUser(user);
         taskService.save(task);
         model.addAttribute("successMessage", "Task successfully created!");
-        model.addAttribute("task", new Task());
-        return "newTask";
+        model.addAttribute("task", task);
+        return "result";
     }
     
     

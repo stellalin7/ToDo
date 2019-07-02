@@ -1,30 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
 <head>
-    <title>Sign Up</title>
-    <link th:replace="fragments/bootstrap"></link>
+	<title>Create a New To-Do Task</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- <link href="../../webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">  -->
+	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/standard.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-    	<div th:replace="fragments/navbar"></div>
-        <div class="jumbotron col-md-8 col-md-offset-2">
-            <h2>New Task</h2><br/>
-            <!-- a new Task() object is saved to the model with the attribute name ${task} in the TaskController method 
-            for @GetMapping(value = "/tasks/new") and th:object="${task}" is then sent as a parameter 
-            to the TaskController method for @PostMapping(value = "/tasks")
-            with the values entered by the user for each th:field="*{title}" in the "fragments/taskForm :: taskForm" -->
-            <form th:action="@{/tasks}" th:object="${task}" method="post" autocomplete="off" >
-                <div th:replace="fragments/taskForm :: taskForm" ></div>
-			    <div class="form-group">
-			        <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit">Save Task</button>
-			    </div>
-			</form>
-			<!-- display the value of ${successMessage} attribute added to the model in the TaskController method for @PostMapping(value = "/tasks")
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+		<h3>Please use the form below to submit a To-Do Task:</h3>
+		<form action="#" th:action="@{/tasks/new}" th:object="${task}"
+			method="post">
+			<!-- <div class="form-group">
+				<input type="text" class="form-control" placeholder="Title..."
+					th:field="*{title}" />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Description..."
+					th:field="*{description}" />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control"
+					placeholder="Your Name Here..." th:field="*{creator}" />
+			</div>
+			<div class="form-group">
+	 			<label for="status">Status</label>
+	 			choices of valid statuses listed in dropdown
+	 			<input list="statuses" name="status" class ="form-control" placeholder="Current Status..." th:field="*{status}"/>
+	 			<datalist id="statuses">
+	 				<option value="Not Started">Not Started</option>
+	 				<option value="Ongoing">Ongoing</option>
+	 				<option value="On Hold">On Hold</option>
+	 				<option value="Complete">Complete</option>
+	 				<option value="Canceled">Canceled</option>
+	 			</datalist>
+	 		</div> -->
+			<!-- <div class="form-group">
+				<input type="text" class="form-control"
+					placeholder="Status: On-Hold, On-Going, Not Started, Finished, or Canceled..."
+					th:field="*{status}" />
+			</div>  -->
+			 <div th:replace="fragments/taskForm :: taskForm" ></div>  
+			<button class="btn btn-primary">Submit Your To-Do Task</button>
+		</form>
+		<!-- display the value of ${successMessage} attribute added to the model in the TaskController method for @PostMapping(value = "/tasks")
 			after ${task} object passed as a parameter into this method is saved to the TaskRepository by taskService.save(task); -->
 			<div th:if="${successMessage}">
 	            <h3><span class="text-success" th:utext="${successMessage}"></span></h3>
-	        </div> 
-	    </div>
-    </div>
+	        </div>
+	</div>
+	<div th:replace="/fragments/styling :: body-links"></div>
 </body>
 </html>
