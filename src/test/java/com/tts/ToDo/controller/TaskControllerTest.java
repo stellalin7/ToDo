@@ -83,7 +83,7 @@ public class TaskControllerTest  {
 		//given
 		long millis=System.currentTimeMillis();  
 		Date today = new Date(millis);
-		Task task1 = new Task(1L,"creator1","title1","description1","New",today);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
 		Task task2 = new Task(2L,"creator2","title2","description2","In Progress",today);
 		
 		when(taskService.findAll()).thenReturn(Arrays.asList(task1,task2));
@@ -105,27 +105,142 @@ public class TaskControllerTest  {
 
 	@Test
 	public void testViewTask() {
-		fail("Not yet implemented");
+		//given
+		long millis=System.currentTimeMillis();  
+		Date today = new Date(millis);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
+		
+		
+		when(taskService.findById(1L)).thenReturn(task1);
+		
+		
+		ArgumentCaptor<Task> argumentCaptor = ArgumentCaptor.forClass(Task.class);
+		
+		//when
+        String viewName = controller.viewTask(1L, model);
+		
+        //then
+        assertEquals("view", viewName);
+		verify(taskService, times(1)).findById(1L);
+        verify(model, times(1)).addAttribute(eq("task"), argumentCaptor.capture());
+        Task inController = argumentCaptor.getValue();
+        assertEquals("creator1",inController.getCreator());
+        assertEquals("title1",inController.getTitle());
+        assertEquals("description1",inController.getDescription());
+        assertEquals("Not Started",inController.getStatus());
+        assertEquals(today,inController.getCreatedAt());
+        
 	}
 
 	@Test
 	public void testGetEditPage() {
-		fail("Not yet implemented");
+		//given
+		long millis=System.currentTimeMillis();  
+		Date today = new Date(millis);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
+		
+		
+		when(taskService.findById(1L)).thenReturn(task1);
+		
+		
+		ArgumentCaptor<Task> argumentCaptor = ArgumentCaptor.forClass(Task.class);
+		
+		//when
+        String viewName = controller.getEditPage(1L, model);
+		
+        //then
+        assertEquals("edit", viewName);
+		verify(taskService, times(1)).findById(1L);
+        verify(model, times(1)).addAttribute(eq("task"), argumentCaptor.capture());
+        Task inController = argumentCaptor.getValue();
+        assertEquals("creator1",inController.getCreator());
+        assertEquals("title1",inController.getTitle());
+        assertEquals("description1",inController.getDescription());
+        assertEquals("Not Started",inController.getStatus());
+        assertEquals(today,inController.getCreatedAt());
+		        
 	}
-
+	
 	@Test
 	public void testSubmitUpdate() {
-		fail("Not yet implemented");
+		//given
+		long millis=System.currentTimeMillis();  
+		Date today = new Date(millis);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
+		Task task2 = new Task(2L,"creator2","title2","description2","In Progress",today);
+		
+		
+		when(taskService.findById(1L)).thenReturn(task1);
+		
+		
+		ArgumentCaptor<Task> argumentCaptor = ArgumentCaptor.forClass(Task.class);
+		
+		//when
+        String viewName = controller.submitUpdate(1L, task2, model);
+		
+        //then
+        assertEquals("result", viewName);
+		verify(taskService, times(2)).findById(1L);
+        verify(model, times(1)).addAttribute(eq("task"), argumentCaptor.capture());
+        Task inController = argumentCaptor.getValue();
+        assertEquals("creator2",inController.getCreator());
+        assertEquals("title2",inController.getTitle());
+        assertEquals("description2",inController.getDescription());
+        assertEquals("In Progress",inController.getStatus());
+       
+        
 	}
 
 	@Test
 	public void testGetDeletePage() {
-		fail("Not yet implemented");
-	}
+		//given
+		long millis=System.currentTimeMillis();  
+		Date today = new Date(millis);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
+		
+		
+		when(taskService.findById(1L)).thenReturn(task1);
+		
+		
+		ArgumentCaptor<Task> argumentCaptor = ArgumentCaptor.forClass(Task.class);
+		
+		//when
+        String viewName = controller.getDeletePage(1L, model);
+		
+        //then
+        assertEquals("delete", viewName);
+		verify(taskService, times(1)).findById(1L);
+        verify(model, times(1)).addAttribute(eq("task"), argumentCaptor.capture());
+        Task inController = argumentCaptor.getValue();
+        assertEquals("creator1",inController.getCreator());
+        assertEquals("title1",inController.getTitle());
+        assertEquals("description1",inController.getDescription());
+        assertEquals("Not Started",inController.getStatus());
+        assertEquals(today,inController.getCreatedAt());
+}
 	
 	@Test
 	public void testDeletePostWithId() {
-		fail("Not yet implemented");
+		//given
+		long millis=System.currentTimeMillis();  
+		Date today = new Date(millis);
+		Task task1 = new Task(1L,"creator1","title1","description1","Not Started",today);
+		Task task2 = new Task(2L,"creator2","title2","description2","In Progress",today);
+		
+		when(taskService.findAll()).thenReturn(Arrays.asList(task1,task2));
+		
+		
+		ArgumentCaptor<List<Task>> argumentCaptor = ArgumentCaptor.forClass(ArrayList.class);
+		
+		//when
+        String viewName = controller.getIndex(model);
+		
+        //then
+        assertEquals("index", viewName);
+		verify(taskService, times(1)).findAll();
+        verify(model, times(1)).addAttribute(eq("taskList"), argumentCaptor.capture());
+        List<Task> listInController = argumentCaptor.getValue();
+        assertEquals(2, listInController.size());
 	}
 
 	@Test

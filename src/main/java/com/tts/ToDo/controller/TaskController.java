@@ -72,7 +72,7 @@ public class TaskController {
     
     @DeleteMapping("/tasks/delete/{id}")
     //@RequestMapping(value = "/blog_posts/{id}", method = RequestMethod.DELETE)
-    public String deletePostWithId(@PathVariable Long id, Task task, Model model) {
+    public String deletePostWithId(@PathVariable Long id, Model model) {
         taskService.deleteById(id);
         List<Task> tasks = taskService.findAll();
         model.addAttribute("taskList", tasks);
