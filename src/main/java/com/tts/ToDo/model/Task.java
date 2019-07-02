@@ -27,8 +27,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Task {
-	
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +59,15 @@ public class Task {
 //		//this.status = "New";
 //		
 //	}
+	
+	public Task(Long id, String creator, String title, String description, String status, Date today) {
+		this.id = id;
+		this.creator = creator;
+		this.title = title;
+		this.description = description;
+		this.status = status;
+		this.createdAt = today;
+	}
 
 	public Long getId() {
 		return id;

@@ -19,6 +19,7 @@ import com.tts.ToDo.model.Task;
 import com.tts.ToDo.service.TaskService;
 //import com.tts.ToDo.service.UserService;
 
+
 @Controller
 public class TaskController {
     //@Autowired
@@ -26,6 +27,10 @@ public class TaskController {
 	
     @Autowired
     private TaskService taskService;
+    
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
     
     @GetMapping(value= {"/tasks", "/"})
     public String getIndex(Model model){

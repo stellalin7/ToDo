@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
 <head>
 </head>
 <body>
@@ -10,15 +11,16 @@
 		            	<!-- <i class="fab fa-twitter"></i> --> ToDo</a>
 			   </div>
 			    <div id="navbar">
-				    <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
+			    	<ul class="nav navbar-nav">
+				    <!-- <ul class="nav navbar-nav" sec:authorize="isAuthenticated()"> -->
 				        <li><a href="/tasks">Home</a></li>
 				        <li><a href="/tasks/new">New Task</a></li>
 				    </ul>
 			        <ul class="nav navbar-nav navbar-right">
-		                <li sec:authorize="isAuthenticated()"><a style="pointer-events: none;color: #00aced">
-		                    <span sec:authentication="name"></span></a>
-		                <li sec:authorize="isAuthenticated()"><a href="../logout">Logout</a></li>
-		                <li sec:authorize="!isAuthenticated()"><a href="../login">Login</a></li>
+		                <!-- <li sec:authorize="isAuthenticated()"><a style="pointer-events: none;color: #00aced">
+		                    <span sec:authentication="name"></span></a> -->
+		                <!-- <li sec:authorize="isAuthenticated()"> <a href="../logout">Logout</a></li>-->
+		                <!-- <li sec:authorize="!isAuthenticated()"><a href="../login">Login</a></li>-->
 		            </ul>
 		        </div>
 		    </div>
