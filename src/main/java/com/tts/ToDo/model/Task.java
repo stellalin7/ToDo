@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
 public class Task {
 
@@ -73,7 +73,9 @@ public class Task {
 		return id;
 	}
 
-
+	public void setId(Long id) {
+		this.id=id;
+	}
 
 	public String getTitle() {
 		return title;
