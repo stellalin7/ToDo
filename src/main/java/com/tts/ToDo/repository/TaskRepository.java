@@ -12,6 +12,7 @@ import com.tts.ToDo.model.Task;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, Long> {
     List<Task> findAllByOrderByCreatedAtDesc();
+    
 //    List<Task> findAllByCreatorOrderByCreatedAtDesc(String creator);
 //    List<Task> findAllByStatusOrderByCreatedAtDesc(String status);
 }

@@ -93,6 +93,9 @@ public class Task {
 		this.description = description;
 	}
 
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt=createdAt;
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;

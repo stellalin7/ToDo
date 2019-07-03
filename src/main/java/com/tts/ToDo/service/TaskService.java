@@ -1,5 +1,6 @@
 package com.tts.ToDo.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,14 @@ public class TaskService {
     }
     
     public Task findById(Long id) {
-    	Task task = taskRepository.findById(id).get();
-    	return task;
+    	Long[] idArray = {id, id};
+    	List <Long> idList = Arrays.asList(idArray);
+    	List <Task> taskList= (List<Task>) taskRepository.findAllById(idList);
+    	//when statement in Mockito returns Optional Task instead of Task below
+    	//Task task = taskRepository.findById(id).get();
+    	//Task task = taskRepository.findById(id).orElse(null);
+    	//return task;
+    	return taskList.get(0);
     }
 }
 
