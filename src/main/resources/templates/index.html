@@ -6,75 +6,51 @@
 	<title>ToDo Site</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../css/standard.css" rel="stylesheet">
+	<link href="../../standard.css" rel="stylesheet">
 </head>
+<body>
 <body>
 	<div class="container">
 		<div th:replace="fragments/navbar"></div>
 		<h1>Welcome to Our To-Do List Site!</h1>
 		<div class="row">
 			<div th:each="do:${taskList}">
-				<div class="col-md-4">
-					<div class="panel panel-default" width="200px">
-						<!-- <div class="panel-heading"> -->
-						<div class="panel-heading text-nowrap">
-							<h3 th:text="${do.title}"></h3>
-							<strong><h4 th:text="${do.creator}" /></h4></strong>
-							<p th:text="${do.status}" /></p>
+				<div class="col-sm-8">		
+				<div class="row">
+					  <div class="card text-center bg-light mb-3 text-truncate" style="width: 25rem;">
+					      <div class="card-header">
+						      <h4 class="card-title" th:text="${do.title}"></h4>
+						      <p class="card-text" th:text="${do.description}"></p>
+					      </div>
+					      <div class="card-body">
+					      	<strong><h5 class= "card-text" th:text="${do.creator}" /></h5></strong>
+					      	<p class= "card-text" th:text="${do.status}" /></p>
+					      	
+					      <div class="btn-group">
+							<a th:href="@{'/tasks/view/{id}'(id=${do.id})}">
+							<button type="submit" class="btn-primary" th:text="Show">Show To-Do Task</button></a>		
+					      </div>
+					      
+					    <div class="btn-group">
+							<a th:href="@{'/tasks/update/{id}'(id=${do.id})}">
+							<button type="submit" class="btn-success" th:text="Update">Update To-Do Task</button></a>
 						</div>
-						<div class="panel-body text-truncate" width="200px">
-						<!-- <div class="panel-body"> -->
-							<p th:text="${do.description}"></p>
-							
-						</div>
-						<div class="panel-footer">
-							
-							<!-- <div class="row"> -->
-							<div class="btn-group btn-group-justified">
-								
-								<!-- Link to Show  -->
-								<!-- <form action="#" th:action="@{'/tasks/view/{id}'(id=${do.id})}"
-									th:method="get" class="form-vertical">
-									<div class="form-group">
-										<input type="hidden" name="_method" value="get" /> -->
-										<div class="btn-group">
-											<a th:href="@{'/tasks/view/{id}'(id=${do.id})}"><button type="submit" class="btn-primary"
-											th:text="Show">Show To-Do Task</button></a>
-										</div>
-									<!-- </div>
-								</form> -->
+					        
+					    <div class="btn-group">
+							<a th:href="@{'/tasks/delete/{id}'(id=${do.id})}">
+							<button type="submit" class="btn-danger" th:text="Delete">Delete To-Do Task</button></a>
+					    </div>
+					        
+					      </div>
+					   </div>
+					 </div>
 
-								<!-- Link to Update -->
-								<!-- <form action="#" th:action="@{'/tasks/update/{id}'(id=${do.id})}"
-									th:method="get" class="form-vertical">
-									<div class="form-group">
-										<input type="hidden" name="_method" value="get" /> -->
-										<div class="btn-group">
-											<a th:href="@{'/tasks/update/{id}'(id=${do.id})}"><button type="submit" class="btn-success"
-											th:text="Update">Update To-Do Task</button></a>
-										</div>
-									<!-- </div>
-								</form> -->
-
-								
-								<!--  Link to Destroy -->
-								<!-- <form action="#" th:action="@{'/tasks/delete/{id}'(id=${do.id})}"
-									th:method="get" class="form-vertical">
-									<div class="form-group">
-										<input type="hidden" name="_method" value="get" /> -->
-										<div class="btn-group">
-											<a th:href="@{'/tasks/delete/{id}'(id=${do.id})}"><button type="submit" class="btn-danger"
-											th:text="Delete">Delete To-Do Task</button></a>
-										</div>
-									<!-- </div>
-								</form> -->
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- <div th:replace="/fragments/styling :: body-links"></div> -->
+
+
+	<div th:replace="/fragments/styling :: body-links"></div>
 </body>
 </html>
