@@ -8,16 +8,16 @@
 </head>
 <body>
 	
-	  	<nav class="navbar navbar-light bg-light">
+	  	<nav class="navbar navbar-light bg-transparent">
 		  <form class="form-inline">
-		    <a th:href="@{/}"><button class="btn btn-outline-primary" type="button">Back to Home Page</button></a>
-		    <a th:href="@{/tasks/new}"><button class="btn btn-sm btn-outline-success" type="button">Submit a New To-Do Task</button></a>
+		    <a th:href="@{/}"><button class="btn btn-outline-primary" type="button"><strong>Back to Home Page</strong></button></a>
+		    <a th:href="@{/tasks/new}"><button class="btn btn-outline-success" type="button"><strong>Submit a New To-Do Task</strong></button></a>
 		  </form>
 		</nav>
 	
 	<script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="../../webjars/jquery/1.9.1/jquery.min.js"></script>
 
-	<div th:replace="/fragments/styling :: body-links"></div>
+
 </body>
 </html>
