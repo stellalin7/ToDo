@@ -4,10 +4,11 @@
 <!-- <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head> -->
-	<title>Delete Confirmation</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../standard.css" rel="stylesheet">
+<title>Delete Confirmation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../standard.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container p-3 mb-2 bg-light text-dark">
@@ -17,42 +18,37 @@
 		<h3>If you continue all data will be lost for this To-Do Task!</h3>
 		<div class="row">
 			<!-- <div th:each="do:${posts}"> -->
-				<div class="col-md-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 th:text="${task.title}"></h3>
-							<h5 th:text="${task.description}"></h5>
-						</div>
-						<div class="panel-body">
-							<strong><p th:text="${task.creator}" /></strong>
-							<p th:text="${task.status}" /></p>
-						</div>
-						<div class="panel-footer">
-							<!-- <div class="row"> -->
-							<div class="btn-group btn-group-justified">
-								<div class="btn-group">
-									<form action="#" th:action="@{'/tasks/delete/{id}'(id=${task.id})}"
-										th:method="delete" class="form-vertical">
-										<div class="form-group">
-											<input type="hidden" name="_method" value="delete" /> 
-											<button type="submit" class="btn-danger"
-												th:text="YES">Delete To-Do Task</button>
-										</div>
-									</form>
-								</div>
-								<!-- <form action="#" th:action="@{/}" th:method="get"
-									class="form-vertical">
-									<div class="form-group"> 
-										<input type="hidden" name="_method" value="get" />-->
-									<div class="btn-group">
-										<a th:href="@{/}"><button type="submit" class="btn-success"
-											th:text="NO">Cancel Delete</button></a>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 th:text="${task.title}"></h3>
+						<h5 th:text="${task.description}"></h5>
+					</div>
+					<div class="panel-body">
+						<strong><p th:text="${task.creator}" /></strong>
+						<p th:text="${task.status}" /></p>
+					</div>
+					<div class="panel-footer">
+						<!-- <div class="row"> -->
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group">
+								<form action="#"
+									th:action="@{'/tasks/delete/{id}'(id=${task.id})}"
+									th:method="delete" class="form-vertical">
+									<div class="form-group">
+										<input type="hidden" name="_method" value="delete" />
+										<button type="submit" class="btn-danger" th:text="YES">Delete
+											To-Do Task</button>
 									</div>
-								<!-- </form> -->
+								</form>
+							</div>
+							<div class="btn-group">
+								<a th:href="@{/}"><button type="submit" class="btn-success"
+										th:text="NO">Cancel Delete</button></a>
 							</div>
 						</div>
 					</div>
-				<!-- </div> -->
+				</div>
 			</div>
 		</div>
 	</div>
